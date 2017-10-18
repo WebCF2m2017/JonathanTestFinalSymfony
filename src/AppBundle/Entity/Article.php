@@ -82,6 +82,7 @@ class Article
     }
 
 
+
     /**
      * Get id
      *

@@ -27,7 +27,7 @@ class ArticleController extends Controller
         $articles = $em->getRepository('AppBundle:Article')->findAll();
 
         return $this->render('article/index.html.twig', array(
-            'articles' => $articles,
+            'articles' => $articles
         ));
     }
 
@@ -101,19 +101,16 @@ class ArticleController extends Controller
     /**
      * Deletes a article entity.
      *
-     * @Route("/{id}", name="admin_article_delete")
-     * @Method("DELETE")
+     * @Route("/delete/{id}", name="admin_article_delete")
+     * @Method("GET")
      */
-    public function deleteAction(Request $request, Article $article)
+    public function deleteAction(Request $request, Article $article, $id)
     {
-        $form = $this->createDeleteForm($article);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($article);
-            $em->flush();
-        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($article, $id);
+        $em->flush();
+
 
         return $this->redirectToRoute('admin_article_index');
     }

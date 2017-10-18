@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container pt-5">
+        <div class="row">
+            <h2>{{ titre }}</h2>
+            <div class="col-sm-12 col-md-8">
+                {% for article in articles %}
+                    <article>
+                        <h2>
+                            <a href="{{ path('show_article', {'id': article.id }) }}">{{ article.theTitle }}</a>
+                        </h2>
+                        <p>
+                            <small>Section :
+                                {% for section in article.section %}
+                                    <a href="{{ path('show_article_section', {'section_name': section.theTitle}) }}">{{ section.theTitle }}</a>
+                                {% endfor %}
+                                ,
+                                par {{ article.fosUser.username }}
+                                Le 18 Octobre 2017</small>
+                        </p>
+                        <p>
+                            {{ article.theText }}
+                        </p>
+                        <p class="text-right">
+                            <a href="{{ path('show_article', {'id': article.id}) }}" class="btn btn-default">Lire plus...</a>
+                        </p>
+                    </article>
+                {% endfor %}
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <h4>Sections</h4>
+                <div class="list-group">
+                    {% for section in sections %}
+                        <a href="{{ path("show_article_section", {'section_name': section.theTitle}) }}" type="button" class="list-group-item">{{ section.theTitle }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Articles list</h1>
+    <div class="container">
+        <h1>Liste des articles</h1>
 
-    <table>
-        <thead>
+        <table class="table table-striped">
+            <thead>
             <tr>
                 <th>Id</th>
                 <th>Thetitle</th>
@@ -12,32 +13,31 @@
                 <th>Thedate</th>
                 <th>Actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for article in articles %}
-            <tr>
-                <td><a href="{{ path('admin_article_show', { 'id': article.id }) }}">{{ article.id }}</a></td>
-                <td>{{ article.thetitle }}</td>
-                <td>{{ article.thetext }}</td>
-                <td>{% if article.thedate %}{{ article.thedate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('admin_article_show', { 'id': article.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin_article_edit', { 'id': article.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td><a href="{{ path('admin_article_show', { 'id': article.id }) }}">{{ article.id }}</a></td>
+                    <td>{{ article.thetitle }}</td>
+                    <td>{{ article.thetext }}</td>
+                    <td>{% if article.thedate %}{{ article.thedate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('admin_article_edit', { 'id': article.id }) }}">Editer</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('admin_article_delete', { 'id': article.id }) }}">Supprimer</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_article_new') }}">Create a new article</a>
-        </li>
-    </ul>
+        <a href="{{ path('admin_article_new') }}" class="btn btn-primary">Créer un nouvel article</a>
+
+
+    </div>
 {% endblock %}

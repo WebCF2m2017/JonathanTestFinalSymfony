@@ -81,6 +81,8 @@ class SectionController extends Controller
      */
     public function editAction(Request $request, Section $section)
     {
+        //return $this->redirectToRoute('homepage');
+
         $deleteForm = $this->createDeleteForm($section);
         $editForm = $this->createForm('AppBundle\Form\SectionType', $section);
         $editForm->handleRequest($request);
@@ -106,6 +108,9 @@ class SectionController extends Controller
      */
     public function deleteAction(Request $request, Section $section)
     {
+        //return $this->redirectToRoute('homepage');
+
+
         $form = $this->createDeleteForm($section);
         $form->handleRequest($request);
 
