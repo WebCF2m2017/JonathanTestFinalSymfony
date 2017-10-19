@@ -4,7 +4,7 @@
 
     <div class="container pt-5">
         <div class="row">
-            <div class="col-sm-12 col-md-8">
+            <div class="col-sm-12 col-md-12">
                     <article>
                         <h2>
                             <a href="{{ path('show_article', {'id': article.id }) }}">{{ article.theTitle }}</a>
@@ -23,15 +23,10 @@
                         </p>
                     </article>
             </div>
-
-            <div class="col-sm-12 col-md-4">
-                <h4>Sections</h4>
-                <div class="list-group">
-                    {% for section in sections %}
-                        <a href="{{ path("show_article_section", {'section_name': section.theTitle}) }}" type="button" class="list-group-item">{{ section.theTitle }}</a>
-                    {% endfor %}
-                </div>
-            </div>
+        </div>
+        <br>
+        <div class="row">
+            <a class="btn btn-primary pull-right" href="{{ path('homepage') }}">Retour à l'accueil</a>
         </div>
     </div>
 

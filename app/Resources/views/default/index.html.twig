@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+
 {% block body %}
     <div class="container pt-5">
         <div class="row">
@@ -19,7 +20,7 @@
                             Le 18 Octobre 2017</small>
                     </p>
                     <p>
-                        {{ article.theText }}
+                        {{ article.theText[:120] ~ '..' }}
                     </p>
                     <p class="text-right">
                         <a href="{{ path('show_article', {'id': article.id }) }}" class="btn btn-default">Lire plus...</a>

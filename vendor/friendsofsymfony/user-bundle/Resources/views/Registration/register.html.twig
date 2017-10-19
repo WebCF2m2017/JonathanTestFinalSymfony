@@ -1,5 +1,19 @@
-{% extends "@FOSUser/layout.html.twig" %}
+{% extends "base.html.twig" %}
 
-{% block fos_user_content %}
-{% include "@FOSUser/Registration/register_content.html.twig" %}
-{% endblock fos_user_content %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+            {{ form_widget(form) }}
+            <div>
+                <input class="btn btn-primary" type="submit" value="S'enregistrer" />
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+{% endblock %}
+
+
