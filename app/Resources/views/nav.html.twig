@@ -8,13 +8,14 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="{{ path('homepage') }}">Accueil</a></li>
+                <li class="{{ (app.request.attributes.get('_route') == 'homepage') ? 'active' : '' }}"><a href="{{ path('homepage') }}">Accueil</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ app.user.username }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
+                            <li><a href="{{ path('fos_user_profile_show') }}">Espace perso</a></li>
                             <li><a href="{{ path('admin_article_index') }}">Gestion des articles</a></li>
                             {% if is_granted('ROLE_ADMIN') %}
                                 <li><a href="{{ path('admin_section_index') }}">Ajouter des sections</a></li>

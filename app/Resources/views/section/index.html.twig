@@ -1,17 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
         <div class="row">
 
             <h1>Sections list</h1>
 
-            <table class="table table-stripped">
+            <table class="table table-striped">
                 <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Thetitle</th>
-                    <th>Actions</th>
+                    <th>Titre de la section</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -19,16 +17,6 @@
                     <tr>
                         <td><a href="{{ path('admin_section_show', { 'id': section.id }) }}">{{ section.id }}</a></td>
                         <td>{{ section.thetitle }}</td>
-                        <td>
-                            <ul>
-                                <li>
-                                    <a href="{{ path('admin_section_show', { 'id': section.id }) }}">show</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('admin_section_edit', { 'id': section.id }) }}">edit</a>
-                                </li>
-                            </ul>
-                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -38,6 +26,5 @@
 
 
         </div>
-    </div>
 
 {% endblock %}

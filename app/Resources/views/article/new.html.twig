@@ -1,16 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Article creation</h1>
+    <div class="row">
+        <h1>Article creation</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+        {{ form_start(form) }}
+        {{ form_row(form.thetitle) }}
+        {{ form_row(form.thetext) }}
+        {{ form_row(form.thedate) }}
+        {% if is_granted('ROLE_ADMIN') %}
+            {{ form_row(form.fosUser) }}
+        {% else %}
+                {{ form_row(form.fosUser, { 'attr': {'style':'display:none'}}) }}
+        {% endif %}
+        {{ form_row(form.section) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_article_index') }}">Back to the list</a>
-        </li>
-    </ul>
+        <input class="btn btn-primary" type="submit" value="Créer" />
+        {{ form_end(form) }}
+
+        <br>
+        <a href="{{ path('admin_article_index') }}">Retour à la liste des articles</a>
+
+    </div>
+
 {% endblock %}

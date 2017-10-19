@@ -2,9 +2,12 @@
 
 namespace AppBundle\Form;
 
+use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ArticleType extends AbstractType
 {
@@ -13,7 +16,7 @@ class ArticleType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('thetitle')->add('thetext')->add('thedate')->add('fosUser')->add('section');
+        $builder->add('thetitle')->add('thetext')->add('thedate')->add('fosUser')->add('section', EntityType::class, ['class' => 'AppBundle:Section', 'multiple' => true, 'expanded' => true]);
     }
     
     /**

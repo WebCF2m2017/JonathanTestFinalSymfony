@@ -1,20 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
         <div class="row">
 
             <h1>Article edit</h1>
 
             {{ form_start(edit_form) }}
             {{ form_widget(edit_form) }}
-            <input type="submit" value="Edit" />
+            <input class="btn btn-primary" type="submit" value="Editer" />
             {{ form_end(edit_form) }}
 
-
-                    <a href="{{ path('admin_article_index') }}">Retour à la gestion des articles</a>
+            <br>
+            <a href="{{ path('admin_article_index') }}">Retour à la gestion des articles</a>
 
         </div>
-    </div>
 
 {% endblock %}

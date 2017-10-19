@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
         <div class="row">
 
             <h1>Section creation</h1>
@@ -12,10 +11,9 @@
             {{ form_end(form) }}
 
 <br>
-            <a class="btn btn-primary" href="{{ path('admin_section_index') }}">Back to the list</a>
+            <a class="btn btn-primary" href="{{ path('admin_section_index') }}">Retour à la liste des sections</a>
 
 
         </div>
-    </div>
 
 {% endblock %}

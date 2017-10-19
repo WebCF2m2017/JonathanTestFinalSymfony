@@ -72,57 +72,7 @@ class SectionController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
-
-    /**
-     * Displays a form to edit an existing section entity.
-     *
-     * @Route("/{id}/edit", name="admin_section_edit")
-     * @Method({"GET", "POST"})
-     */
-    public function editAction(Request $request, Section $section)
-    {
-        //return $this->redirectToRoute('homepage');
-
-        $deleteForm = $this->createDeleteForm($section);
-        $editForm = $this->createForm('AppBundle\Form\SectionType', $section);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('admin_section_edit', array('id' => $section->getId()));
-        }
-
-        return $this->render('section/edit.html.twig', array(
-            'section' => $section,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Deletes a section entity.
-     *
-     * @Route("/{id}", name="admin_section_delete")
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, Section $section)
-    {
-        //return $this->redirectToRoute('homepage');
-
-
-        $form = $this->createDeleteForm($section);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($section);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('admin_section_index');
-    }
-
+    
     /**
      * Creates a form to delete a section entity.
      *
