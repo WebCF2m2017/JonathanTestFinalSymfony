@@ -9,6 +9,8 @@
                 <th>Id</th>
                 <th>Thetitle</th>
                 <th>Thetext</th>
+                <th>Section</th>
+                <th>Par</th>
                 <th>Thedate</th>
                 <th>Actions</th>
             </tr>
@@ -19,6 +21,13 @@
                     <td><a href="{{ path('admin_article_show', { 'id': article.id }) }}">{{ article.id }}</a></td>
                     <td>{{ article.thetitle }}</td>
                     <td>{{ article.thetext }}</td>
+                    <td>
+                        {% for section in article.section %}
+                            {{ section.theTitle }}
+                            {% if not loop.last %},{% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>{{ article.fosUser.username }}</td>
                     <td>{% if article.thedate %}{{ article.thedate|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>
                         <ul>

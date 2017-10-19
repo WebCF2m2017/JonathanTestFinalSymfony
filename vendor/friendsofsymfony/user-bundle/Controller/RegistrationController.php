@@ -147,7 +147,7 @@ class RegistrationController extends Controller
         $userManager->updateUser($user);
 
         if (null === $response = $event->getResponse()) {
-            $url = $this->generateUrl('fos_user_registration_confirmed');
+            $url = $this->generateUrl('homepage');
             $response = new RedirectResponse($url);
         }
 
@@ -166,6 +166,7 @@ class RegistrationController extends Controller
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
+        return $this->redirectToRoute('homepage');
         return $this->render('@FOSUser/Registration/confirmed.html.twig', array(
             'user' => $user,
             'targetUrl' => $this->getTargetUrlFromSession(),

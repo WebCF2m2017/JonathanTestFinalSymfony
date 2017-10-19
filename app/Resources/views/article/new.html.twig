@@ -5,15 +5,7 @@
         <h1>Article creation</h1>
 
         {{ form_start(form) }}
-        {{ form_row(form.thetitle) }}
-        {{ form_row(form.thetext) }}
-        {{ form_row(form.thedate) }}
-        {% if is_granted('ROLE_ADMIN') %}
-            {{ form_row(form.fosUser) }}
-        {% else %}
-                {{ form_row(form.fosUser, { 'attr': {'style':'display:none'}}) }}
-        {% endif %}
-        {{ form_row(form.section) }}
+        {{ form_widget(form) }}
 
         <input class="btn btn-primary" type="submit" value="Créer" />
         {{ form_end(form) }}

@@ -48,7 +48,7 @@ class SectionController extends Controller
             $em->persist($section);
             $em->flush();
 
-            return $this->redirectToRoute('admin_section_show', array('id' => $section->getId()));
+            return $this->redirectToRoute('show_article_section', array('section_name' => $section->getThetitle()));
         }
 
         return $this->render('section/new.html.twig', array(
@@ -72,20 +72,6 @@ class SectionController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
-    
-    /**
-     * Creates a form to delete a section entity.
-     *
-     * @param Section $section The section entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Section $section)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_section_delete', array('id' => $section->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
-    }
+
+
 }

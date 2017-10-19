@@ -41,15 +41,27 @@ class ArticleController extends Controller
     public function newAction(Request $request)
     {
         $article = new Article();
-        $form = $this->createForm('AppBundle\Form\ArticleType', $article);
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
+            $form = $this->createForm('AppBundle\Form\ArticleType', $article);
+        else
+            $form = $this->createForm('AppBundle\Form\ArticleUserType', $article);
+
+
         $form->handleRequest($request);
+
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
+            {
+                $user = $em->getRepository('AppBundle:FosUser')->find($this->getUser()->getId());
+                $article->setFosUser($user);
+            }
             $em->persist($article);
             $em->flush();
 
-            return $this->redirectToRoute('admin_article_show', array('id' => $article->getId()));
+            return $this->redirectToRoute('admin_article_index');
         }
 
         return $this->render('article/new.html.twig', array(
@@ -96,14 +108,17 @@ class ArticleController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($article);
-        $editForm = $this->createForm('AppBundle\Form\ArticleType', $article);
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
+            $editForm = $this->createForm('AppBundle\Form\ArticleType', $article);
+        else
+            $editForm = $this->createForm('AppBundle\Form\ArticleUserType', $article);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_article_edit', array('id' => $article->getId()));
+            return $this->redirectToRoute('admin_article_index');
         }
 
         return $this->render('article/edit.html.twig', array(
