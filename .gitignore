@@ -1,6 +1,7 @@
 # fichiers Phpstorm
 /.idea/
-
+# fichier de config
+/app/config/parameters.yml
 # fichiers de cache (var)
 /var/*
 !/var/cache
